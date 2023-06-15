@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Monitoramento de IP</title>
+</head>
+<body>
+    <h1>Monitoramento de IP:</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="ip_address" placeholder="Endereço IP" required>
+        <button type="submit">Monitorar IP</button>
+    </form>
+
+    <h2>Lista de IPs monitorados:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Endereço IP</th>
+                <th>Status do Ping</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ip in ip_list %}
+                <tr>
+                    <td>{{ ip.ip_address }}</td>
+                    <td>{% if ip.last_ping_status %}Online{% else %}Offline{% endif %}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">Nenhum IP monitorado</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
