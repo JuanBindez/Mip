@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monitoramento de IP</title>
+</head>
+<body>
+    <h1>Monitoramento de IP</h1>
+    
+    <h2>Adicionar IP</h2>
+    <form method="POST" action="{% url 'adicionar_ip' %}">
+        {% csrf_token %}
+        <input type="text" name="ip" placeholder="Digite o IP">
+        <input type="submit" value="Adicionar">
+    </form>
+    
+    <h2>Lista de IPs</h2>
+    <ul>
+        {% for ip_status in ip_statuses %}
+        <li>{{ ip_status.ip }} - {% if ip_status.status %}Online{% else %}Offline{% endif %}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
