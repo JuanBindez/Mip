@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class IPStatus(models.Model):
     ip = models.CharField(max_length=15)
     status = models.BooleanField(default=False)
